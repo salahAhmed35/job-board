@@ -12,9 +12,12 @@ const config: Config = {
         primary : "#27CB8B",
         secondary : "#F9F9F9",
         tertiary : "#F0F0F0",
+        primaryBlue : "#000DFF",
+        darkBlue:"#172554",
+        darkGray:"#374151"
       },
       backgroundColor : {
-        sections : "#f1f5f9",
+        section : "#f1f5f9",
       }
     },
     container :{

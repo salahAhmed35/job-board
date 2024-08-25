@@ -18,19 +18,16 @@ const Signup = () => {
                     </p>
                 </div>
                 <form action="" className="flex flex-col">
-                    {/* Full Name */}
                     <div className="flex flex-col mb-4">
                         <label htmlFor="fullname" className="mb-2 text-lg font-semibold text-gray-600">Full Name</label>
                         <input type="text" required id="fullname" className="w-full border-2 border-solid rounded px-1 py-2 focus:outline-blue-400" placeholder="Enter your full name" />
                     </div>
 
-                    {/* Email Address */}
                     <div className="flex flex-col mb-4">
                         <label htmlFor="email" className="mb-2 text-lg font-semibold text-gray-600">Email Address</label>
                         <input type="email" required id="email" className="w-full border-2 border-solid rounded px-1 py-2 focus:outline-blue-400" placeholder="Enter your email address" />
                     </div>
 
-                    {/* Password */}
                     <div className="w-full flex flex-col relative mb-4">
                         <label htmlFor="password" className="mb-2 text-lg font-semibold text-gray-600">Password</label>
                         <div className="relative flex items-center">
@@ -65,8 +62,6 @@ const Signup = () => {
                             placeholder="Confirm your password"
                         />
                     </div>
-
-                    {/* Terms and Conditions */}
                     <div className="my-3">
                         <input type="checkbox" id="terms" required className="rounded mr-2" />
                         <label htmlFor="terms" className="text-lg font-semibold text-gray-600">
@@ -74,7 +69,6 @@ const Signup = () => {
                         </label>
                     </div>
 
-                    {/* Sign Up Button */}
                     <div className="flex justify-end items-center mt-4">
                         <SecondaryButton title="Sign Up" />
                     </div>

@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { MdContentPasteSearch } from "react-icons/md";
-import { CustomButton } from "../ui/button/Button";
+import { PrimaryButton } from "../ui/button/primaryButton";
 import Link from "next/link";
 const NavBar = () => {
     return(
@@ -18,7 +18,7 @@ const NavBar = () => {
                 <a className="text-white px-2 text-md mx-2 font-medium" href="/">Contact</a>
             </div>
             <div className="nav-buttons">
-                <Link href="/login"><CustomButton title={"login"} /></Link>
+                <Link href="/login"><PrimaryButton title={"login"} /></Link>
             </div>
             </div>
         </div>

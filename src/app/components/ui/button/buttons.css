@@ -1,0 +1,21 @@
+.secondary-btn  {
+  position: relative;
+  background-color: #000DFF;
+  z-index: 1;
+}
+
+.secondary-btn::before {
+  content: '';
+  height: 100%;
+  width: 0;
+  position: absolute;
+  background-color: #27CB8B;
+  transition: all 0.3s;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+  z-index: -1;
+}
+.secondary-btn:hover::before {
+  width: 100%;
+}
