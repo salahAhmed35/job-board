@@ -2,12 +2,36 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+// import { useRouter } from "next/router";
 import SecondaryButton from "../components/ui/button/secondaryButton";
 import { FaEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [userName, setUserName] = useState<String>('');
+    const [email, setEmail] = useState<String>('');
+    const [password, setPassword] = useState<String>('');
+    const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+    const [error, setError] = useState<String>('');
+    const [success, setSuccess] = useState<String>('');
+    // const router = useRouter();
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
 
+        try{
+            const res = await fetch('/api/auth/register', {
+                method : 'POST',
+                body : JSON.stringify({userName, email, password})
+            });
+            const data = await res.json();
+            if(!res.ok){
+                setError(data.message)
+            }
+            setSuccess('Registration successful!');
+        }catch (error){
+            setError('Failed to register. Please try again.');
+        }
+    }
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:px-6 lg:px-8">
             <div className="bg-white w-[650px] py-6 px-4 rounded m-auto">
@@ -21,7 +45,7 @@ const Signup = () => {
 
 
                     <div className="flex flex-col mb-4">
-                        <label htmlFor="fullname" className="mb-2 text-lg font-semibold text-gray-600">Full Name</label>
+                        <label htmlFor="username" className="mb-2 text-lg font-semibold text-gray-600">Username</label>
                         <input type="text" required id="fullname" className="w-full border-2 border-solid rounded px-1 py-2 focus:outline-blue-400" placeholder="Enter your full name" />
                     </div>
                     <div className="flex flex-col mb-4">
