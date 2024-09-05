@@ -1,12 +1,16 @@
-import React, {FC} from "react";
-import "./buttons.css"
+import React, {FC , MouseEvent} from "react";
+import "./buttons.css";
+
+type ButtonType = "button" | "submit" | "reset"
 interface ButtonProps {
-    title:string
+    title:any;
+    onClick? :(e: MouseEvent<HTMLButtonElement>) => void, 
+    type?: ButtonType;
 }
-const SecondaryButton : FC<ButtonProps> = ({title}) => {
+const SecondaryButton : FC<ButtonProps> = ({title, onClick , type}) => {
     return (
         <>
-            <button className="secondary-btn find-talant text-white ml-2 w-[120px] text-md font-semibold py-2 px-4 rounded ">{title}</button>
+            <button type={type} className="secondary-btn find-talant text-white ml-2 w-[120px] text-md font-semibold py-2 px-4 rounded " onClick={onClick}>{title}</button>
         </>
     )
 }

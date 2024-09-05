@@ -68,12 +68,6 @@ const BrowseByCategory = () => {
           icon: <FaUserShield />,
           color: "#DC143C", 
         },
-        {
-          name: "Project Management",
-          description: "Plan and oversee projects to ensure they are completed on time and within budget.",
-          icon: <FaProjectDiagram />,
-          color: "#4682B4",
-        },
       ];
       
 
@@ -89,7 +83,7 @@ const BrowseByCategory = () => {
         </div>
         <div className="cards-container flex flex-wrap justify-between  gap-2 mt-10 mb-3">
             {categories.map((category, index) => (
-              <div key={index} className="card lg:w-1/4 grow p-4 m-2  bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+              <div key={index} className="card lg:w-1/4 p-4 m-2 grow bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                 <div className="bg-white  card-icon text-5xl mt-2 mb-12" style={{color: category.color}}>{category.icon}</div>
                 <h3 className="card-title text-2xl font-semibold mt-5 mb-3">{category.name}</h3>
                 <p className="card-description text-gray-600 mb-5">{category.description}</p>

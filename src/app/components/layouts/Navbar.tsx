@@ -4,6 +4,7 @@ import { MdContentPasteSearch } from "react-icons/md";
 import { PrimaryButton } from "../ui/button/primaryButton";
 import Link from "next/link";
 const NavBar = () => {
+    
     return(
         <div className="Navbar bg-red-500 py-3 px-2">
             <div className="container lg:max-w-screen-lg mx-auto flex items-center justify-between">
