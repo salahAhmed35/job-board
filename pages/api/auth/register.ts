@@ -21,7 +21,6 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
         await newUser.save()
         res.status(201).json({message: "Registration successful! Redirecting you to the login page..."})
     }catch(error){
-        console.error('Error occurred:', error)
         res.status(500).json({message: "Internal Server Error"})
     }
 }

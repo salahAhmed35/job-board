@@ -23,12 +23,12 @@ const Signup = () => {
   const [IsLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   // 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const {userName, email, password, confirmPassword} = form
+    const { userName, email, password, confirmPassword } = form
     if (!password || !email || !userName) {
       setError("Please fill in all required fields");
       return;
@@ -44,20 +44,23 @@ const Signup = () => {
         email,
         password
       })
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         setError(response.data.message);
+        setSuccess('')
       } else {
         setSuccess(response.data.message);
+        setError('')
         setTimeout(() => {
           router.push("/login");
         }, 2000);
       }
     } catch (error) {
-      if(axios.isAxiosError(error)){
-        setError(data.message);
-      }else{
-        setError("An unexpected error occurred.");
-      }
+        if (axios.isAxiosError(error) && error.response) {
+          setError(error.response.data.message);
+        } else {
+          setError("An unexpected error occurred.");
+        }
+        setSuccess("");
     } finally {
       setIsLoading(false);
     }
@@ -72,8 +75,8 @@ const Signup = () => {
             Create an account to get started
           </p>
         </div>
-        {success ? <SuccessAlert successMessage={success} /> : ''}
-        {error ? <ErrorAlert error={error} /> : ''}
+        {success && <SuccessAlert successMessage={success} />}
+        {error && <ErrorAlert error={error} />}
         <form onSubmit={handleSubmit} className="flex flex-col">
           <div className="flex flex-col mb-4">
             <label
@@ -182,6 +185,7 @@ const Signup = () => {
             <SecondaryButton
               title={IsLoading ? "loading..." : "signUp"}
               type="submit"
+              disabled={IsLoading}
             />
           </div>
         </form>
