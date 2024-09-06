@@ -3,6 +3,7 @@ import React, { FormEvent, useState } from "react";
 import Link from "next/link";
 import { ErrorAlert } from "../components/ui/alerts/errorAlert";
 import { SuccessAlert } from "../components/ui/alerts/successAlert";
+import { useRouter } from "next/navigation";
 import SecondaryButton from "../components/ui/button/secondaryButton";
 import { FaEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -14,7 +15,7 @@ const Login = () => {
     const [success, setSuccess] = useState<string>('')
     const [error, setError] = useState<string>('')
     const [IsLoading, setIsLoading] = useState<boolean>(false)
-
+    const router = useRouter()
     const handleSubmit = async (e : FormEvent) => {
         e.preventDefault();
         if(!email || !password) return;
@@ -30,6 +31,9 @@ const Login = () => {
                 setSuccess('')
             }else{
                 setSuccess(response.data.message)
+                setTimeout(() => {
+                    router.push('/')
+                }, 2000);
                 setError('')
             }
         }catch(error){

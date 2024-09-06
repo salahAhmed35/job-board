@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/pages/about/index.tsx", "src/app/pages/login/index.tsx", "lib/mongo/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/pages/about/index.tsx", "src/app/pages/login/index.tsx", "lib/mongo/index.js", "src/app/context/userContext.tsx"],
   "exclude": ["node_modules"]
 }
