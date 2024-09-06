@@ -18,6 +18,8 @@ export default async function login(req: NextApiRequest,res: NextApiResponse){
         const isMatched = await bcrypt.compare(password, user.password);
         if(!isMatched){
             return res.status(400).json({message : 'Password Is Incorrect'})
+        }else{
+            return res.status(201).json({message:"Successful login"})
         }
     }catch(error){
         return res.status(500).json({message: 'Inernal Server Error', error})
