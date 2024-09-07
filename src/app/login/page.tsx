@@ -1,5 +1,5 @@
 "use client"
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useState, useContext } from "react";
 import Link from "next/link";
 import { ErrorAlert } from "../components/ui/alerts/errorAlert";
 import { SuccessAlert } from "../components/ui/alerts/successAlert";
@@ -8,14 +8,17 @@ import SecondaryButton from "../components/ui/button/secondaryButton";
 import { FaEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { UserContext } from "../context/userContext";
 const Login = () => {
     const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('')
+    const [password, setPassword] = useState<string>('');
     const [showPassword, setShowPassword] = useState<boolean>(false);
-    const [success, setSuccess] = useState<string>('')
-    const [error, setError] = useState<string>('')
-    const [IsLoading, setIsLoading] = useState<boolean>(false)
-    const router = useRouter()
+    const [success, setSuccess] = useState<string>('');
+    const [error, setError] = useState<string>('');
+    const [IsLoading, setIsLoading] = useState<boolean>(false);
+    const {setUser, user} = useContext(UserContext);
+    const router = useRouter();
     const handleSubmit = async (e : FormEvent) => {
         e.preventDefault();
         if(!email || !password) return;
@@ -30,12 +33,16 @@ const Login = () => {
                 setError(response.data.message)
                 setSuccess('')
             }else{
-                setSuccess(response.data.message)
-                console.log(response.data.user);
+                const token = response.data.token;
+                sessionStorage.setItem('token', token);
+                const userInfo = jwtDecode(token);
+                setUser(userInfo);
+                console.log(user.email);
+                setSuccess(response.data.message);
+                setError('');
                 setTimeout(() => {
                     router.push('/')
                 }, 2000);
-                setError('')
             }
         }catch(error){
             if(axios.isAxiosError(error) && error.response){
