@@ -2,8 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import User from "../../../models/User";
 import dbConnect from "../../../lib/mongo";
 import bcrypt from 'bcrypt';
-
-
 export default async function login(req: NextApiRequest,res: NextApiResponse){
     if(req.method !== 'POST'){
         return res.status(405).json({message: 'Mothed Not Allowed'})
@@ -18,7 +16,7 @@ export default async function login(req: NextApiRequest,res: NextApiResponse){
         const isMatched = await bcrypt.compare(password, user.password);
         if(!isMatched){
             return res.status(400).json({message : 'Password Is Incorrect'})
-        }else{
+        }else{ 
             return res.status(201).json({message:"Successful login"})
         }
     }catch(error){

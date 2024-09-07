@@ -31,6 +31,7 @@ const Login = () => {
                 setSuccess('')
             }else{
                 setSuccess(response.data.message)
+                console.log(response.data.user);
                 setTimeout(() => {
                     router.push('/')
                 }, 2000);
