@@ -17,7 +17,7 @@ const Login = () => {
     const [success, setSuccess] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [IsLoading, setIsLoading] = useState<boolean>(false);
-    const {setUser, user} = useContext(UserContext);
+    const {setUser} = useContext(UserContext);
     const router = useRouter();
     const handleSubmit = async (e : FormEvent) => {
         e.preventDefault();
@@ -36,12 +36,11 @@ const Login = () => {
                 const token = response.data.token;
                 sessionStorage.setItem('token', token);
                 const userInfo = jwtDecode(token);
-                setUser(userInfo);
-                console.log(user.email);
                 setSuccess(response.data.message);
                 setError('');
                 setTimeout(() => {
                     router.push('/')
+                    setUser(userInfo);
                 }, 2000);
             }
         }catch(error){

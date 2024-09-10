@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { PrimaryButton } from "../ui/button/primaryButton";
+import SecondaryButton from "../ui/button/secondaryButton";
 import "./landing.css"
 export const LandingPage = () => {
     return (
@@ -11,7 +13,9 @@ export const LandingPage = () => {
                     <p className="text-lg">This is the landing page of my website.</p>
                     <div className="landing-buttons my-3 flex items-center">
                         <PrimaryButton title="Find job"/>
-                        <button className="find-talant text-white ml-2 w-[120px] text-md font-semibold py-2 px-4 rounded ">Find Talant</button>
+                        <Link href='/post-job'>
+                           <SecondaryButton title = "Post job"/>
+                        </Link>
                     </div>
                 </div>
                 <div className="landing-image ">

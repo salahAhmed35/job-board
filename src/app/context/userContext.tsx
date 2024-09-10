@@ -1,5 +1,5 @@
 "use client"
-import React , {createContext, useState, ReactNode ,Dispatch, SetStateAction} from "react";
+import React , {createContext, useState, ReactNode ,Dispatch, SetStateAction, useContext} from "react";
 interface User{
     id: string,
     email: string,
@@ -9,7 +9,7 @@ interface UserContextType{
   user : User | null;
   setUser : Dispatch<SetStateAction <User | null>>
 }
-const UserContext = createContext<UserContextType | undefined>(undefined);
+export const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
