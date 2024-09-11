@@ -10,7 +10,7 @@ export default async function postJob(req: NextApiRequest, res:NextApiResponse){
     await dbConnect();
     const {title, company, location, jobType, jobCategory, description, salary, userId} = req.body;
     console.log(req.body);
-    if(!title || !company || !location || !jobType || !jobCategory || !description){
+    if(!title || !company || !location || !jobType || !jobCategory || !description || !userId){
         res.status(400).json({message: 'Please provide all required fields'});
     }else{
         try{
@@ -22,7 +22,7 @@ export default async function postJob(req: NextApiRequest, res:NextApiResponse){
                 jobCategory,
                 description,
                 salary,
-                userId
+                postedBy: userId
             });
             await newjob.save() 
             res.status(201).json({message: "job saved"})

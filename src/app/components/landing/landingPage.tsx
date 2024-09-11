@@ -1,10 +1,20 @@
-import React from "react";
+'use client'
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PrimaryButton } from "../ui/button/primaryButton";
 import SecondaryButton from "../ui/button/secondaryButton";
+import { UserContext } from "@/app/context/userContext";
 import "./landing.css"
 export const LandingPage = () => {
+    const {user} = useContext(UserContext);
+    const checkUserLogin = () => { 
+        if(user){
+            return '/post-job'
+        }else{
+            return '/login'
+        };
+    };
     return (
         <div className="h-screen bg-white landing-page flex">
             <div className="container flex  items-center justify-between">
@@ -13,7 +23,7 @@ export const LandingPage = () => {
                     <p className="text-lg">This is the landing page of my website.</p>
                     <div className="landing-buttons my-3 flex items-center">
                         <PrimaryButton title="Find job"/>
-                        <Link href='/post-job'>
+                        <Link href={checkUserLogin()}>
                            <SecondaryButton title = "Post job"/>
                         </Link>
                     </div>

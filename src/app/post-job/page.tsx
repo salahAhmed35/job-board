@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+import React, { ChangeEvent, FormEvent, useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import axios from "axios";
 interface FormData {
@@ -37,7 +37,6 @@ export const jobCategorys = [
 const jobTypes = ["Full-time", "Part-time", "Contract", "Internship"];
 const PostJob = () => {
   const { user } = useContext(UserContext);
-  const userId = user?._id;
   const [formData, setFormData] = useState<FormData>({
     title: "",
     company: "",
@@ -46,7 +45,7 @@ const PostJob = () => {
     jobCategory: "",
     description: "",
     salary: null,
-    userId: userId || ''
+    userId:  user && user.userId
   });
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -55,6 +54,7 @@ const PostJob = () => {
   };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    console.log(formData);
     const response = await axios.post('api/postJob/postJob', formData);
     if (response.status === 201) {
       console.log(response.data.massage);
