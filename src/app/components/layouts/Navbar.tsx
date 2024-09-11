@@ -14,7 +14,7 @@ const NavBar = () => {
                 </a>
                 <div className="links flex items-center">
                     <a className="text-white px-2 text-md mx-2 font-medium" href="/">Home</a>
-                    <a className="text-white px-2 text-md mx-2 font-medium" href="/">Browse Jobs</a>
+                    <Link className="text-white px-2 text-md mx-2 font-medium" href="/browseJobs">Browse Jobs</Link>
                     <a className="text-white px-2 text-md mx-2 font-medium" href="/">About</a>
                     <a className="text-white px-2 text-md mx-2 font-medium" href="/">Contact</a>
                 </div>

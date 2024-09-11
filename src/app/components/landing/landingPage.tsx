@@ -22,7 +22,9 @@ export const LandingPage = () => {
                     <h1 className="text-4xl font-bold mb-4">Welcome to My Website</h1>
                     <p className="text-lg">This is the landing page of my website.</p>
                     <div className="landing-buttons my-3 flex items-center">
-                        <PrimaryButton title="Find job"/>
+                        <Link href= '/browseJobs'>
+                           <PrimaryButton title="Find job"/>
+                        </Link>
                         <Link href={checkUserLogin()}>
                            <SecondaryButton title = "Post job"/>
                         </Link>
